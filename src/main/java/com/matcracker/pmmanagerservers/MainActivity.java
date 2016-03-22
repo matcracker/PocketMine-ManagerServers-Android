@@ -16,7 +16,7 @@ import com.matcracker.pmmanagerservers.Utility.Utility;
 
 public class MainActivity extends AppCompatActivity
 {
-    private Button installa,opzioni,informazioni,esci,manutenzione;
+    private Button installator,options,informations,exit,manage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        installa=(Button) findViewById(R.id.button2);
-        manutenzione=(Button) findViewById(R.id.button3);
-        opzioni=(Button) findViewById(R.id.button4);
-        informazioni=(Button) findViewById(R.id.button5);
-        esci=(Button) findViewById(R.id.button6);
+        installator=(Button) findViewById(R.id.button2);
+        manage=(Button) findViewById(R.id.button3);
+        options=(Button) findViewById(R.id.button4);
+        informations=(Button) findViewById(R.id.button5);
+        exit=(Button) findViewById(R.id.button6);
 
-        installa.setOnClickListener(new View.OnClickListener() {
+        installator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        manutenzione.setOnClickListener(new View.OnClickListener() {
+        manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //
             }
         });
 
-        opzioni.setOnClickListener(new View.OnClickListener() {
+        options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent impostazioni = new Intent(MainActivity.this,SettingsMenu.class);
@@ -54,14 +54,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        informazioni.setOnClickListener(new View.OnClickListener() {
+        informations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //
             }
         });
 
-        esci.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

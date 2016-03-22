@@ -13,7 +13,7 @@ import com.matcracker.pmmanagerservers.Utility.Utility;
 public class SettingsMenu extends Activity
 {
 
-    private Button lingua,reset,indietro,cambia;
+    private Button language,reset,back,change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,19 @@ public class SettingsMenu extends Activity
         setContentView(R.layout.settings_menu);
 
 
-        lingua=(Button) findViewById(R.id.button2);
-        cambia=(Button) findViewById(R.id.button3);
+        language=(Button) findViewById(R.id.button2);
+        change=(Button) findViewById(R.id.button3);
         reset=(Button) findViewById(R.id.button4);
-        indietro=(Button) findViewById(R.id.button6);
+        back=(Button) findViewById(R.id.button6);
 
-        lingua.setOnClickListener(new View.OnClickListener() {
+        language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //
             }
         });
 
-        cambia.setOnClickListener(new View.OnClickListener() {
+        change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //
@@ -47,7 +47,7 @@ public class SettingsMenu extends Activity
             }
         });
 
-        indietro.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
