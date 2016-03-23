@@ -1,2 +1,2 @@
 # PocketMine-ManagerServers-Android
-PocketMine-ManagerServers made for Androd!
+PocketMine-ManagerServers made for Android!
