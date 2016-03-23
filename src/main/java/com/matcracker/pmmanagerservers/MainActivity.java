@@ -16,7 +16,7 @@ import com.matcracker.pmmanagerservers.Utility.Utility;*/
 
 public class MainActivity extends AppCompatActivity
 {
-    private Button installator,options,informations,exit,manage;
+    public Button installator,options,informations,exit,manage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Intent installator=new Intent(MainActivity.this,ManagerInstallerMenu.class);
+                startActivity(installator);
+                MainActivity.this.finish();
                 //Installator.installatorMenu();
             }
         });
@@ -89,7 +92,6 @@ public class MainActivity extends AppCompatActivity
                         })
 
                         .create().show();
-
             }
         });
     }

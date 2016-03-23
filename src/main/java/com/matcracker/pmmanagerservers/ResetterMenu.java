@@ -32,7 +32,7 @@ public class ResetterMenu extends AppCompatActivity
             //"Backups" + File.separator + "Servers"
     };
 
-    private Button resetprog,resetserv,resetall,back;
+    public Button resetprog,resetserv,resetall,back;
 
 
 
@@ -76,8 +76,8 @@ public class ResetterMenu extends AppCompatActivity
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Indietro = new Intent(ResetterMenu.this, MainActivity.class);
-                startActivity(Indietro);
+                Intent Back = new Intent(ResetterMenu.this, MainActivity.class);
+                startActivity(Back);
                 ResetterMenu.this.finish();
             }
         });

@@ -13,7 +13,7 @@ import android.widget.Button;
 public class SettingsMenu extends AppCompatActivity
 {
 
-    private Button language,reset,back,change;
+    public Button language,reset,back,change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

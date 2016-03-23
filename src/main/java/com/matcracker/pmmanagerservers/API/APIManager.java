@@ -25,7 +25,7 @@ public class APIManager
         return APIVersion;
     }
 
-    public String getVersion() {
+    /*public String getVersion() {
         return Utility.version;
-    }
+    }*/
 }

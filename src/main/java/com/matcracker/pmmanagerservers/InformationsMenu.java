@@ -13,7 +13,7 @@ import android.widget.Button;
 
 public class InformationsMenu extends AppCompatActivity {
 
-    private Button license,credits,more_information,disclaimer,back;
+    public Button license,credits,more_information,disclaimer,back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
