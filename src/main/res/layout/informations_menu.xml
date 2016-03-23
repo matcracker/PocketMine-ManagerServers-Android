@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.matcracker.pmmanagerservers.SettingsMenu">
+    tools:context="com.matcracker.pmmanagerservers.InformationsMenu">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="------&lt;Program Options>------"
+        android:text="------&lt;Informations>------"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -22,7 +21,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1- Language"
+        android:text="1- License"
         android:id="@+id/button2"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
@@ -32,7 +31,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2- Change/Delete servers name"
+        android:text="2- Credits"
         android:id="@+id/button3"
         android:layout_above="@+id/button4"
         android:layout_alignParentLeft="true"
@@ -42,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3- Reset program"
+        android:text="3- More informations"
         android:id="@+id/button4"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -51,11 +50,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4- Back"
+        android:text="4- Disclaimer"
+        android:id="@+id/button5"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/button4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5- Back"
         android:id="@+id/button6"
         android:layout_marginTop="36dp"
+        android:layout_below="@+id/button5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/button4" />
-
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

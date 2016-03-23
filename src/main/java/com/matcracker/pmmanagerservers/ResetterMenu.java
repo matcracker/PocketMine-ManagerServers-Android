@@ -1,18 +1,20 @@
 package com.matcracker.pmmanagerservers;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.matcracker.pmmanagerservers.Settings.Resetter;
+//import com.matcracker.pmmanagerservers.Settings.Resetter;
 import com.matcracker.pmmanagerservers.Utility.Utility;
 
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 
-public class ResetterMenu extends Activity
+public class ResetterMenu extends AppCompatActivity
 {
 
 
@@ -25,12 +27,12 @@ public class ResetterMenu extends Activity
             "Utils",
             "Installations",
             "Languages",
-            //"Backups",
-            "Backups" + File.separator + "Status",
-            "Backups" + File.separator + "Servers"
+            "Backups",
+            //"Backups" + File.separator + "Status",
+            //"Backups" + File.separator + "Servers"
     };
 
-    private Button resetprog,resetserv,resetall,indietro;
+    private Button resetprog,resetserv,resetall,back;
 
 
 
@@ -43,12 +45,17 @@ public class ResetterMenu extends Activity
         resetprog=(Button) findViewById(R.id.button2);
         resetserv=(Button) findViewById(R.id.button3);
         resetall=(Button) findViewById(R.id.button4);
-        indietro=(Button) findViewById(R.id.button6);
+        back=(Button) findViewById(R.id.button6);
 
         resetprog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //resetProgram();
+                try {
+                    resetProgram();
+                }
+                catch (Exception e) {
+                    //Errors
+                }
             }
         });
 
@@ -66,49 +73,82 @@ public class ResetterMenu extends Activity
             }
         });
 
-        indietro.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Indietro = new Intent(ResetterMenu.this, MainActivity.class);
                 startActivity(Indietro);
+                ResetterMenu.this.finish();
             }
         });
     }
 
-    public static void resetProgram() throws IOException {
-        String confirm = null;
-        //File dirDeleter;
-        do{
-            /*Utility.cleanScreen();
-            System.out.println("========================<PocketMine Manager Servers>============================");
-            System.out.println("-------------------------------<Reset Program>----------------------------------");
-            System.out.print("Are you sure to want reset data of servers (only program)? <y/n>: ");
-            confirm = Utility.keyword.readLine();*/
+    public void resetProgram() throws IOException {
 
+        new AlertDialog.Builder(ResetterMenu.this)
+                .setTitle("Reset")
+                .setMessage("Are you sure to want reset data of servers (only program)?")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                })
 
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do Nothing
+                    }
+                })
 
+                .create().show();
 
-        }while(!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
-
-        if(confirm.equalsIgnoreCase("y")){
-            for(int i = 0; i < dirsName.length; i++)
-                Utility.deleteFile(dirsName[i]); //TODO Check why some file can't be deleted
-            System.out.println("Closing program...");
-            //Desktop.getDesktop().open(new File("run.bat"));
-
-        }else{
-            Resetter.resetterMenu();
-        }
     }
 
-    public static void resetServers(){
-        //Utility.cleanScreen();
-        System.out.println("========================<PocketMine Manager Servers>============================");
-        System.out.println("-------------------------------<Reset Program>----------------------------------");
+    public void resetServers(){
+        new AlertDialog.Builder(ResetterMenu.this)
+                .setTitle("Reset")
+                .setMessage("Are you sure to want reset data of servers (only servers)?")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do Nothing
+                    }
+                })
+
+                .create().show();
     }
 
-    public static void resetAllData(){
+    public void resetAllData(){
+        new AlertDialog.Builder(ResetterMenu.this)
+                .setTitle("Reset")
+                .setMessage("Are you sure to want reset data of servers?")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                })
 
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do Nothing
+                    }
+                })
+
+                .create().show();
     }
 
 }
