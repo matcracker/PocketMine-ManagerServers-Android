@@ -6,10 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-//import com.matcracker.pmmanagerservers.Settings.Resetter;
-//import com.matcracker.pmmanagerservers.Utility.Utility;
-
-
 public class SettingsMenu extends AppCompatActivity
 {
 
@@ -45,6 +41,7 @@ public class SettingsMenu extends AppCompatActivity
             public void onClick(View v) {
                 Intent reset=new Intent(SettingsMenu.this,ResetterMenu.class);
                 startActivity(reset);
+                SettingsMenu.this.finish();
             }
         });
 

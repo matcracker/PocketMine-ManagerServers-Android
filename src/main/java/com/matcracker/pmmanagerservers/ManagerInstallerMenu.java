@@ -2,13 +2,9 @@ package com.matcracker.pmmanagerservers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;;
 import android.view.View;
 import android.widget.Button;
-
-import com.matcracker.pmmanagerservers.Installer.ManagerInstaller;
-
-//import com.matcracker.pmmanagerservers.Utility.Utility;
 
 public class ManagerInstallerMenu extends AppCompatActivity {
 
@@ -32,9 +28,30 @@ public class ManagerInstallerMenu extends AppCompatActivity {
         });
 
         install.setOnClickListener(new View.OnClickListener() {
+            //FileOutputStream fOut;
             @Override
             public void onClick(View v) {
-                //
+                /*try {
+                    fOut = openFileOutput("prova.pm", MODE_WORLD_READABLE);
+                    String str = "data";
+                    fOut.write(str.getBytes());
+                    fOut.close();
+                    File prova=new File("/data/data/com.matcracker.pmmanagerservers/files/prova");
+                    prova.mkdir();
+                }
+                catch (IOException e) {
+                    new AlertDialog.Builder(ManagerInstallerMenu.this)
+                            .setTitle("Error")
+                            .setMessage("Error writting file")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Do Nothing
+                                }
+                            })
+                            .create().show();
+                }*/
             }
         });
 

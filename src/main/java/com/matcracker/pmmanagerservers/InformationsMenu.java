@@ -60,10 +60,7 @@ public class InformationsMenu extends AppCompatActivity {
                         .setTitle("More Informations")
                         .setItems(elements, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
-                                Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://twitter.com/matcracker98"));
-                                startActivity(viewIntent);
-
+                                minformation(which);
                             }
                         })
                         .create().show();
@@ -95,5 +92,16 @@ public class InformationsMenu extends AppCompatActivity {
                 InformationsMenu.this.finish();
             }
         });
+    }
+
+    public void minformation(int selection) {
+        if(selection==0) {
+            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://twitter.com/matcracker98"));
+            startActivity(viewIntent);
+        }
+        else{
+            Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("https://github.com/matcracker/PocketMine-ManagerServers-Android"));
+            startActivity(viewIntent);
+        }
     }
 }

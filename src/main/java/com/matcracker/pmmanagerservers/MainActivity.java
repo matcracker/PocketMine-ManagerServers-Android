@@ -8,19 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/*import com.matcracker.pmmanagerservers.Informations.Informations;
-import com.matcracker.pmmanagerservers.Installer.Installator;
-import com.matcracker.pmmanagerservers.Loaders.Loader;
-import com.matcracker.pmmanagerservers.Settings.Settings;
-import com.matcracker.pmmanagerservers.Utility.Utility;*/
+import com.matcracker.pmmanagerservers.Loaders.LoaderAndroid;
 
-public class MainActivity extends AppCompatActivity
-{
+
+public class MainActivity extends AppCompatActivity {
+
     public Button installator,options,informations,exit,manage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -29,6 +26,8 @@ public class MainActivity extends AppCompatActivity
         options=(Button) findViewById(R.id.button4);
         informations=(Button) findViewById(R.id.button5);
         exit=(Button) findViewById(R.id.button6);
+
+        LoaderAndroid.CreateDirectory();
 
         installator.setOnClickListener(new View.OnClickListener() {
             @Override

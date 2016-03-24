@@ -25,6 +25,7 @@ public class Loader {
      */
 
     public static void startLoader() throws InterruptedException, IOException{
+
         String[] dirsName = {
                 "Data",
                 "ServersName",
@@ -38,7 +39,7 @@ public class Loader {
                 "Backups" + File.separator + "Servers"
         };
 
-        File checkLicense = new File("LICENSE.pdf");
+        //File checkLicense = new File("LICENSE.pdf");
         File dirMaker;
 
         boolean[] firstStart = new boolean[dirsName.length];
@@ -52,9 +53,9 @@ public class Loader {
             }
         }
 
-        if(!firstStart[(int)(Math.random() * dirsName.length)] && checkLicense.exists()){
+        if(!firstStart[(int)(Math.random() * dirsName.length)]){
             return;
-        }else{
+        }else {
             System.out.println("Preparing the first start...");
             Thread.sleep(1500);
 
@@ -71,16 +72,16 @@ public class Loader {
     }
 
     public static void completeLoader() throws IOException{
-        int nservers = 0;
+        int nservers = 1;
         if(UtilityServers.checknservers.exists()){
             nservers = Utility.readIntData(new File("Data" + File.separator + "nservers.pm"));
             return;
         }else{
             do{
                 //Utility.cleanScreen();
-                System.out.println("========================<PocketMine Manager Servers>============================");
-                System.out.println("-------------------------<Complete the informations>----------------------------");
-                System.out.print("How many servers do you want to manage? <1/2/3/.../10> : ");
+                //System.out.println("========================<PocketMine Manager Servers>============================");
+                //System.out.println("-------------------------<Complete the informations>----------------------------");
+                //System.out.print("How many servers do you want to manage? <1/2/3/.../10> : ");
 
                 try{
                     nservers = Integer.valueOf(Utility.keyword.readLine());
@@ -90,11 +91,11 @@ public class Loader {
                 }
 
                 if(nservers > 10){
-                    System.out.println("ERROR! You have exceeded the maximum number of servers available. Please reduce the amount!");
+                    //System.out.println("ERROR! You have exceeded the maximum number of servers available. Please reduce the amount!");
                     Utility.keyword.readLine();
 
                 }else if(nservers <= 0){
-                    System.out.println("ERROR! You have to manage one or more server! (MAX TEN!!)");
+                    //System.out.println("ERROR! You have to manage one or more server! (MAX TEN!!)");
                     Utility.keyword.readLine();
                 }
             }while(nservers > 10 || nservers <= 0);
