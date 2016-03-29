@@ -48,6 +48,20 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".DownloaderMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".InstallerMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import com.matcracker.pmmanagerservers.Loaders.LoaderAndroid;
 
-
 public class MainActivity extends AppCompatActivity {
 
     public Button installator,options,informations,exit,manage;

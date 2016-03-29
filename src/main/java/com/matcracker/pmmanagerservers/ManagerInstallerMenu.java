@@ -23,7 +23,9 @@ public class ManagerInstallerMenu extends AppCompatActivity {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                Intent download=new Intent(ManagerInstallerMenu.this,DownloaderMenu.class);
+                startActivity(download);
+                ManagerInstallerMenu.this.finish();
             }
         });
 
@@ -52,6 +54,9 @@ public class ManagerInstallerMenu extends AppCompatActivity {
                             })
                             .create().show();
                 }*/
+                Intent install=new Intent(ManagerInstallerMenu.this,InstallerMenu.class);
+                startActivity(install);
+                ManagerInstallerMenu.this.finish();
             }
         });
 

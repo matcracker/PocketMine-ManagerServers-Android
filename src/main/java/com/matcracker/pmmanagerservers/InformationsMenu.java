@@ -1,7 +1,5 @@
 package com.matcracker.pmmanagerservers;
 
-
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;

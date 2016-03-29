@@ -5,8 +5,7 @@ import java.io.IOException;
 
 import com.matcracker.pmmanagerservers.Utility.Utility;
 
-public class Resetter
-{
+public class Resetter {
     /** _____           _        _   __  __ _                   __  __                                   _____
      *|  __ \         | |      | | |  \/  (_)                 |  \/  |                                 / ____|
      *| |__) |__   ___| | _____| |_| \  / |_ _ __   ___ ______| \  / | __ _ _ __   __ _  __ _  ___ _ _| (___   ___ _ ____   _____ _ __ ___
@@ -15,7 +14,7 @@ public class Resetter
      *|_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|      |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_____/ \___|_|    \_/ \___|_|  |___/
      *                                                                                   __/ |
      *                                                                                  |___/
-     *Copyright (C) 2015 @author matcracker
+     *Copyright (C) 2015-2016 @author matcracker
      *
      *This program is free software: you can redistribute it and/or modify
      *it under the terms of the GNU Lesser General Public License as published by
@@ -31,13 +30,13 @@ public class Resetter
             "Utils",
             "Installations",
             "Languages",
-            //"Backups",
-            "Backups" + File.separator + "Status",
-            "Backups" + File.separator + "Servers"
+            "Backups",
+            //"Backups" + File.separator + "Status",
+            //"Backups" + File.separator + "Servers"
     };
 
     public static void resetterMenu() throws IOException{
-        //Utility.cleanScreen();
+        Utility.cleanScreen();
 
         System.out.println("========================<PocketMine Manager Servers>============================");
         System.out.println("-------------------------------<Reset Program>----------------------------------");
@@ -68,7 +67,7 @@ public class Resetter
         //File dirDeleter;
 
         do{
-            //Utility.cleanScreen();
+            Utility.cleanScreen();
             System.out.println("========================<PocketMine Manager Servers>============================");
             System.out.println("-------------------------------<Reset Program>----------------------------------");
             System.out.print("Are you sure to want reset data of servers (only program)? <y/n>: ");
@@ -90,7 +89,7 @@ public class Resetter
     }
 
     public static void resetServers(){
-        //Utility.cleanScreen();
+        Utility.cleanScreen();
         System.out.println("========================<PocketMine Manager Servers>============================");
         System.out.println("-------------------------------<Reset Program>----------------------------------");
     }

@@ -3,8 +3,6 @@ package com.matcracker.pmmanagerservers.Informations;
 //import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import com.matcracker.pmmanagerservers.Utility.Utility;
 
 public class Informations {
@@ -16,7 +14,7 @@ public class Informations {
      *|_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|      |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_____/ \___|_|    \_/ \___|_|  |___/
      *                                                                                   __/ |
      *                                                                                  |___/
-     *Copyright (C) 2015 @author matcracker
+     *Copyright (C) 2015-2016 @author matcracker
      *
      *This program is free software: you can redistribute it and/or modify
      *it under the terms of the GNU Lesser General Public License as published by
@@ -26,11 +24,11 @@ public class Informations {
 
 
 
-    public static void informationsMenu() throws IOException, URISyntaxException {
+    public static void informationsMenu() throws IOException{
         final String gitlink = "https://github.com/matcracker/PocketMine-ManagerServers-Java";
         final String twitterlink = "https://twitter.com/matcracker98";
 
-        //Utility.cleanScreen();
+        Utility.cleanScreen();
 
         System.out.println("========================<PocketMine Manager Servers>============================");
         System.out.println("--------------------------------<Informations>----------------------------------");
@@ -43,19 +41,20 @@ public class Informations {
         System.out.print("\nChoose information: ");
         String info = Utility.keyword.readLine();
 
-        /*if(info.equalsIgnoreCase("1")){
+        if(info.equalsIgnoreCase("1")){
             File license = new File("LICENSE.pdf");
-            if(license.isFile() && license.exists())
-                Desktop.getDesktop().open(license);
+            if(license.isFile() && license.exists()) {
+                //Desktop.getDesktop().open(license);
+            }
             else{
                 System.out.println("BAD SOFTWARE, you are using a wrong version of software.");
                 Utility.keyword.readLine();
             }
 
-        }*/
+        }
 
         if(info.equalsIgnoreCase("2")){
-            //Utility.cleanScreen();
+            Utility.cleanScreen();
             System.out.println("========================<PocketMine Manager Servers>============================");
             System.out.println("-----------------------------------<Credits>------------------------------------");
             System.out.println("This program is free software made by matcracker: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or at your option) any later version.");
@@ -68,7 +67,7 @@ public class Informations {
         }
 
         if(info.equalsIgnoreCase("3")){
-            //Utility.cleanScreen();
+            Utility.cleanScreen();
             System.out.println("========================<PocketMine Manager Servers>============================");
             System.out.println("-----------------------------<More Informations>--------------------------------");
             System.out.println("1- GitHub");
@@ -78,18 +77,18 @@ public class Informations {
             System.out.print("\nChoose information: ");
             String moreInfo = Utility.keyword.readLine();
 
-            //if(moreInfo.equalsIgnoreCase("1"))
-                //Desktop.getDesktop().browse(new URL(gitlink).toURI());
+            if(moreInfo.equalsIgnoreCase("1"))
+                Utility.openSoftware("url", gitlink);
 
-            //if(moreInfo.equalsIgnoreCase("2"))
-                //Desktop.getDesktop().browse(new URL(twitterlink).toURI());
+            if(moreInfo.equalsIgnoreCase("2"))
+                Utility.openSoftware("url", twitterlink);
 
             if(moreInfo.equalsIgnoreCase("3"))
                 Informations.informationsMenu();
         }
 
         if(info.equalsIgnoreCase("4")){
-            //Utility.cleanScreen();
+            Utility.cleanScreen();
             System.out.println("========================<PocketMine Manager Servers>============================");
             System.out.println("---------------------------------<Disclaimer>-----------------------------------");
             System.out.println("I do not assume responsibility for the use of this program if being deleted folders or files, for you, important.");
@@ -100,4 +99,5 @@ public class Informations {
 
         if(info.equalsIgnoreCase("5"))
             return;
-    }}
+    }
+}
