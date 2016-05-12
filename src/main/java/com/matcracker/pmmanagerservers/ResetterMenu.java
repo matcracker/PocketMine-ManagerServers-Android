@@ -7,17 +7,32 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.matcracker.pmmanagerservers.Utility.Utility;
+
 import java.io.File;
 import java.io.IOException;
 
-public class ResetterMenu extends AppCompatActivity
-{
+public class ResetterMenu extends AppCompatActivity {
 
-    String[] dirsName = {"/data/data/com.matcracker.pmmanagerservers/files/Data", "/data/data/com.matcracker.pmmanagerservers/files/ServersName", "/data/data/com.matcracker.pmmanagerservers/files/Path", "/data/data/com.matcracker.pmmanagerservers/files/Performance", "/data/data/com.matcracker.pmmanagerservers/files/Utils", "/data/data/com.matcracker.pmmanagerservers/files/Installations", "/data/data/com.matcracker.pmmanagerservers/files/Languages", "/data/data/com.matcracker.pmmanagerservers/files/Backups", "/data/data/com.matcracker.pmmanagerservers/files/Backups" + File.separator + "Status", "/data/data/com.matcracker.pmmanagerservers/files/Backups" + File.separator + "Servers"};
+    public Button resetprog, resetserv, back;
 
-    public Button resetprog,resetserv,resetall,back;
-
-
+    private static String[] dirsName = {
+            Utility.pathSD,
+            Utility.pathSD + File.separator + "Data",
+            Utility.pathSD + File.separator + "ServersName",
+            Utility.pathSD + File.separator + "Path",
+            Utility.pathSD + File.separator + "Performance",
+            Utility.pathSD + File.separator + "Utils",
+            Utility.pathSD + File.separator + "Installations",
+            Utility.pathSD + File.separator + "Installations" + File.separator + "Status",
+            Utility.pathSD + File.separator + "Installations" + File.separator + "Version",
+            Utility.pathSD + File.separator + "Installations" + File.separator + "Downloads",
+            Utility.pathSD + File.separator + "Languages",
+            Utility.pathSD + File.separator + "Backups",
+            Utility.pathSD + File.separator + "Backups" + File.separator + "Status",
+            Utility.pathSD + File.separator + "Backups" + File.separator + "Servers"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +40,16 @@ public class ResetterMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resetter);
 
-        resetprog=(Button) findViewById(R.id.button2);
-        resetserv=(Button) findViewById(R.id.button3);
-        resetall=(Button) findViewById(R.id.button4);
-        back=(Button) findViewById(R.id.button6);
+        resetprog = (Button) findViewById(R.id.button2);
+        resetserv = (Button) findViewById(R.id.button3);
+        back = (Button) findViewById(R.id.button6);
 
         resetprog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     resetProgram();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     //Errors
                 }
             }
@@ -46,13 +59,6 @@ public class ResetterMenu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 resetServers();
-            }
-        });
-
-        resetall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetAllData();
             }
         });
 
@@ -76,18 +82,10 @@ public class ResetterMenu extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        File dir=null;
-
-                        for(int i=0;i<dirsName.length;i++) {
-                            dir = new File(dirsName[i]);
-                            dir.delete();
+                        for (int i = 1; i < dirsName.length; i++) {
+                            deleteFiles(dirsName[i]);
+                            deleteFolder(dirsName[i], dirsName.length);
                         }
-
-                        /*File[] files = dir.listFiles();
-
-                        for(File file : files) {
-                            file.delete();
-                        }*/
                     }
                 })
 
@@ -102,7 +100,7 @@ public class ResetterMenu extends AppCompatActivity
 
     }
 
-    public void resetServers(){
+    public void resetServers() {
         new AlertDialog.Builder(ResetterMenu.this)
                 .setTitle("Reset")
                 .setMessage("Are you sure to want reset data of servers (only servers)?")
@@ -124,26 +122,22 @@ public class ResetterMenu extends AppCompatActivity
                 .create().show();
     }
 
-    public void resetAllData(){
-        new AlertDialog.Builder(ResetterMenu.this)
-                .setTitle("Reset")
-                .setMessage("Are you sure to want reset data of servers?")
-                .setCancelable(false)
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //
-                    }
-                })
+    private static void deleteFolder(String folder, int index) {
+        File dir = new File(folder);
 
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Do Nothing
-                    }
-                })
+        for (int i = 0; i < index; i++)
+            dir.delete();
+    }
 
-                .create().show();
+    private static void deleteFiles(String folder) {
+        File dir = new File(folder);
+        File[] files = dir.listFiles();
+
+        for (File file : files) {
+            if (!file.delete()) {
+                System.out.print("Error");
+            }
+        }
     }
 
 }

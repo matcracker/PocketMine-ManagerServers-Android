@@ -9,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.matcracker.pmmanagerservers.Utility.Utility;
+
 import java.io.File;
 
 public class DownloaderMenu extends AppCompatActivity {
 
-    public Button beta,dev,soft,back;
+    public Button beta, dev, soft, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,10 @@ public class DownloaderMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.downloader_menu);
 
-        beta=(Button) findViewById(R.id.button2);
-        dev=(Button) findViewById(R.id.button3);
-        soft=(Button) findViewById(R.id.button4);
-        back=(Button) findViewById(R.id.button5);
+        beta = (Button) findViewById(R.id.button2);
+        dev = (Button) findViewById(R.id.button3);
+        soft = (Button) findViewById(R.id.button4);
+        back = (Button) findViewById(R.id.button5);
 
         final String linkbeta = "https://github.com/PocketMine/PocketMine-MP/releases/download/1.4.1dev-936/PocketMine-MP_1.4.1dev-936.phar";
         final String linkdev = "https://bintray.com/artifact/download/pocketmine/PocketMine/PocketMine-MP_1.6dev-23_6ba0abf5_API-2.0.0.phar";
@@ -33,9 +35,9 @@ public class DownloaderMenu extends AppCompatActivity {
         beta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File beta = new File("/data/data/com.matcracker.pmmanagerservers/files/Utils" + File.separator + "PocketMine-MP_BETA.phar");
+                File beta = new File(Utility.pathSD + File.separator + "Utils" + File.separator + "PocketMine-MP_BETA.phar");
 
-                if(beta.exists()) {
+                if (beta.exists()) {
                     new AlertDialog.Builder(DownloaderMenu.this)
                             .setTitle("Error")
                             .setMessage("You have already downloaded this file!")
@@ -47,7 +49,7 @@ public class DownloaderMenu extends AppCompatActivity {
                                 }
                             })
                             .create().show();
-                }else{
+                } else {
                     Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(linkbeta));
                     startActivity(viewIntent);
                 }
@@ -57,9 +59,9 @@ public class DownloaderMenu extends AppCompatActivity {
         dev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File dev = new File("/data/data/com.matcracker.pmmanagerservers/files/Utils" + File.separator + "PocketMine-MP_DEV.phar");
+                File dev = new File(Utility.pathSD + File.separator + "Utils" + File.separator + "PocketMine-MP_DEV.phar");
 
-                if(dev.exists()) {
+                if (dev.exists()) {
                     new AlertDialog.Builder(DownloaderMenu.this)
                             .setTitle("Error")
                             .setMessage("You have already downloaded this file!")
@@ -71,7 +73,7 @@ public class DownloaderMenu extends AppCompatActivity {
                                 }
                             })
                             .create().show();
-                }else{
+                } else {
                     Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(linkdev));
                     startActivity(viewIntent);
                 }
@@ -81,9 +83,9 @@ public class DownloaderMenu extends AppCompatActivity {
         soft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File soft = new File("/data/data/com.matcracker.pmmanagerservers/files/Utils" + File.separator + "PocketMine-MP_SOFT.phar");
+                File soft = new File(Utility.pathSD + File.separator + "Utils" + File.separator + "PocketMine-MP_SOFT.phar");
 
-                if(soft.exists()) {
+                if (soft.exists()) {
                     new AlertDialog.Builder(DownloaderMenu.this)
                             .setTitle("Error")
                             .setMessage("You have already downloaded this file!")
@@ -95,7 +97,7 @@ public class DownloaderMenu extends AppCompatActivity {
                                 }
                             })
                             .create().show();
-                }else{
+                } else {
                     Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse(linksoft));
                     startActivity(viewIntent);
                 }
@@ -105,7 +107,7 @@ public class DownloaderMenu extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back=new Intent(DownloaderMenu.this,MainActivity.class);
+                Intent back = new Intent(DownloaderMenu.this, MainActivity.class);
                 startActivity(back);
                 DownloaderMenu.this.finish();
             }

@@ -1,86 +1,72 @@
 package com.matcracker.pmmanagerservers.Loaders;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.matcracker.pmmanagerservers.API.StatusAPI;
+import com.matcracker.pmmanagerservers.API.UtilityServersAPI;
+import com.matcracker.pmmanagerservers.Utility.Utility;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class LoaderAndroid {
 
-    public static void CreateDirectory() {
+    public static void createDirectory(Context context) {
         String[] dirsName = {
-                "/data/data/com.matcracker.pmmanagerservers/files/Data",
-                "/data/data/com.matcracker.pmmanagerservers/files/ServersName",
-                "/data/data/com.matcracker.pmmanagerservers/files/Path",
-                "/data/data/com.matcracker.pmmanagerservers/files/Performance",
-                "/data/data/com.matcracker.pmmanagerservers/files/Utils",
-                "/data/data/com.matcracker.pmmanagerservers/files/Installations",
-                "/data/data/com.matcracker.pmmanagerservers/files/Installations" + File.separator + "Status",
-                "/data/data/com.matcracker.pmmanagerservers/files/Installations" + File.separator + "Version",
-                "/data/data/com.matcracker.pmmanagerservers/files/Installations" + File.separator + "Downloads",
-                "/data/data/com.matcracker.pmmanagerservers/files/Languages",
-                "/data/data/com.matcracker.pmmanagerservers/files/Backups",
-                "/data/data/com.matcracker.pmmanagerservers/files/Backups" + File.separator + "Status",
-                "/data/data/com.matcracker.pmmanagerservers/files/Backups" + File.separator + "Servers"
+                Utility.pathSD,
+                Utility.pathSD + File.separator + "Data",
+                Utility.pathSD + File.separator + "ServersName",
+                Utility.pathSD + File.separator + "Path",
+                Utility.pathSD + File.separator + "Performance",
+                Utility.pathSD + File.separator + "Utils",
+                Utility.pathSD + File.separator + "Installations",
+                Utility.pathSD + File.separator + "Installations" + File.separator + "Status",
+                Utility.pathSD + File.separator + "Installations" + File.separator + "Version",
+                Utility.pathSD + File.separator + "Installations" + File.separator + "Downloads",
+                Utility.pathSD + File.separator + "Languages",
+                Utility.pathSD + File.separator + "Backups",
+                Utility.pathSD + File.separator + "Backups" + File.separator + "Status",
+                Utility.pathSD + File.separator + "Backups" + File.separator + "Servers"
         };
 
-        File path;
-        for(int i = 0; i < dirsName.length; i++){
-            path = new File(dirsName[i]);
-            if(!path.exists()){
+        for (int i = 0; i < dirsName.length; i++) {
+            File path = new File(dirsName[i]);
+            if (!path.exists()) {
+                Toast.makeText(context, "Path Created " + dirsName[i], Toast.LENGTH_LONG).show();
                 path.mkdir();
             }
         }
-        try {
-            LoaderAndroid.completeLoader();
-        }
-        catch (Exception e) {
-            //Errors
-        }
-        /*FileOutputStream fOut;
-        fOut = openFileOutput("prova.pm", MODE_WORLD_READABLE);
-        String str = "data";
-        fOut.write(str.getBytes());
-        fOut.close();*/
+
+        completeLoader(context);
     }
 
-    public static void completeLoader() throws IOException {
+    public static void completeLoader(Context context) {
 
-        int nservers = 1;
-        File checknservers = new File("/data/data/com.matcracker.pmmanagerservers/files/Data" + File.separator + "nservers.pm");
+        final File checknservers = new File(Utility.pathSD + File.separator + "Data" + File.separator + "nservers.pm");
+        int nservers = 5;
 
-        if(checknservers.exists()){
+        if (checknservers.exists()) {
+            return;
+        } else {
 
-            FileReader readerData = null;
-            int data = 0;
-
-            try{
-                readerData = new FileReader(checknservers);
-            }catch (FileNotFoundException e1) {
-            }
-
-            try{
-                readerData = new FileReader(checknservers);
-                char[] chars = new char[(int) checknservers.length()];
-                data = readerData.read(chars);
-            }catch (IOException e){
-                //Errors
-            }
-
-        }else{
-
-            /*AlertDialog.Builder builder = new AlertDialog.Builder(LoaderAndroid.this);
-            builder.setTitle("Title");
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Input");
 
 
-            final EditText input = new EditText(LoaderAndroid.this);
+            final EditText input = new EditText(context);
 
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
             builder.setView(input);
+            builder.setMessage("Number of Server");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String prova = input.getText().toString();
+                    String nservers = input.getText().toString();
+                    Utility.writeIntData(checknservers, Integer.parseInt(nservers));
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -90,7 +76,44 @@ public class LoaderAndroid {
                 }
             });
 
-            builder.show();*/
+            builder.show();
+        }
+
+        try {
+            nservers = Utility.readIntData(checknservers);
+        } catch(Exception e) {
+
+        }
+        /*Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("file/*");
+        startActivityForResult(fileIntent,1);*/
+
+        if (nservers >= 1) {
+            String[] nameServers = new String[nservers];
+            String[] path = new String[nservers];
+
+            if (UtilityServersAPI.checkServersFile("ServersName", "ServerName_", nservers - 1)) {
+                return;
+            } else {
+                selection(nservers, nameServers, path);
+
+                for (int i = 1; i <= nservers; i++) {
+                    UtilityServersAPI.setNameServer(i - 1, nameServers[i - 1]);
+                    StatusAPI.setStatus("Not Downloaded", i - 1);
+                    StatusAPI.setVersion("No version", i - 1);
+                    StatusAPI.setPerformance("Personal", i - 1);
+                    UtilityServersAPI.setPath(i - 1, path[i - 1]);
+                }
+            }
+        }
+    }
+
+    private static void selection(int nservers, String[] nameServers, String[] path) {
+        for (int i = 0; i <= nservers; i++) {
+            Utility.defaultServersName = "Server_Minecraft_PE_" + i;
+            //System.out.printf("%d) Name of %d° server: ", i, i);
+
+            nameServers[i-1] = Utility.defaultServersName;
         }
     }
 }
